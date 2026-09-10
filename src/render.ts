@@ -409,7 +409,7 @@ export const BuildWebsitePage = `
           <div class="eyebrow">A field study in three dimensions</div>
           <h1 class="hero-title" id="hero-title">Heaven <span class="slash">/</span><em>on Earth</em></h1>
         </div>
-        <p class="hero-deck">Seen from above, all twelve figures lie flat in the earth and surround the Tor. The stars return in every pool.</p>
+        <p class="hero-deck">Four great figures rise from the earth and the stars above — a ram, a bull, a lion, an eagle — joined across the horizon and returned in every pool.</p>
       </div>
       <div class="hero-footer"><span class="hero-coordinates">Glastonbury, Somerset / 2024—∞</span><span class="scroll-cue">Enter the view</span></div>
     </section>
@@ -417,7 +417,7 @@ export const BuildWebsitePage = `
     <section class="statement" id="view" aria-labelledby="statement-title">
       <div class="section-index">01 / The proposition</div>
       <div class="statement-copy">
-        <p id="statement-title">Look down and the familiar world begins to <em>rearrange itself.</em> Twelve figures lie in a circle around us. The Milky Way trembles in every flooded field. Heaven and earth hold the same pattern.</p>
+        <p id="statement-title">Look down and the familiar world begins to <em>rearrange itself.</em> Four figures hold the horizon between them. The Milky Way trembles in every flooded field. Heaven and earth hold the same pattern.</p>
         <div class="statement-rule"></div>
       </div>
     </section>
