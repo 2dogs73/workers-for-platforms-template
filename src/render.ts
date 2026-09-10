@@ -155,7 +155,7 @@ button { font: inherit; }
   position: absolute;
   z-index: -2;
   inset: 0;
-  background-image: linear-gradient(180deg, rgba(9,15,18,.65) 0%, rgba(11,18,19,.05) 35%, rgba(9,14,12,.85) 100%), url('${HERO_IMAGE}');
+  background-image: linear-gradient(180deg, rgba(9,15,18,.48) 0%, rgba(11,18,19,.03) 35%, rgba(9,14,12,.62) 100%), url('${HERO_IMAGE}');
   background-position: center;
   background-size: cover;
   content: '';
@@ -270,9 +270,15 @@ button { font: inherit; }
 .label-levels { right: 10%; bottom: 22%; }
 .label-water { bottom: 9%; left: 13%; }
 .map-card-caption { position: absolute; right: 18px; bottom: 16px; left: 18px; display: flex; justify-content: space-between; border-top: 1px solid rgba(63,82,63,.26); padding-top: 9px; color: var(--moss-dark); font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+.zodiac-index { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 80px; border-top: 1px solid var(--ink-line); }
+.zodiac-item { min-height: 142px; padding: 22px 20px 20px 0; border-bottom: 1px solid var(--ink-line); }
+.zodiac-item:not(:nth-child(3n + 1)) { padding-left: 24px; border-left: 1px solid var(--ink-line); }
+.zodiac-name { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; color: var(--moss-dark); font-family: var(--mono); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+.zodiac-name::before { width: 6px; height: 6px; border: 1px solid var(--ochre); border-radius: 50%; box-shadow: 0 0 0 3px rgba(187,149,85,.12); content: ''; }
+.zodiac-item p { max-width: 270px; margin: 0; color: rgba(17,22,17,.68); font-family: var(--serif); font-size: 17px; line-height: 1.25; }
 
 .full-bleed { position: relative; min-height: 700px; color: var(--paper-bright); background: var(--night); }
-.full-bleed::before { position: absolute; inset: 0; background-image: linear-gradient(90deg, rgba(8,15,15,.78), rgba(8,15,15,.12) 74%), url('${HERO_IMAGE}'); background-position: center 62%; background-size: cover; content: ''; }
+.full-bleed::before { position: absolute; inset: 0; background-image: linear-gradient(90deg, rgba(8,15,15,.58), rgba(8,15,15,.04) 74%), url('${HERO_IMAGE}'); background-position: center 62%; background-size: cover; content: ''; }
 .full-bleed-content { position: relative; display: flex; min-height: 700px; flex-direction: column; justify-content: space-between; padding: clamp(36px, 7vw, 104px) clamp(24px, 8vw, 136px); }
 .full-bleed-top { display: flex; justify-content: space-between; color: rgba(246,245,239,.68); font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
 .full-bleed h2 { max-width: 560px; margin: 0; font-family: var(--serif); font-size: clamp(50px, 8vw, 120px); font-weight: 500; letter-spacing: -.065em; line-height: .9; }
@@ -344,6 +350,9 @@ button { font: inherit; }
   .map-layout { grid-template-columns: 1fr; gap: 48px; }
   .map-copy { max-width: 480px; }
   .map-card { min-height: 390px; }
+  .zodiac-index { grid-template-columns: 1fr 1fr; margin-top: 62px; }
+  .zodiac-item:not(:nth-child(3n + 1)) { padding-left: 0; border-left: 0; }
+  .zodiac-item:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--ink-line); }
   .full-bleed, .full-bleed-content { min-height: 620px; }
   .full-bleed-content { padding: 38px 24px 30px; }
   .full-bleed-top { gap: 20px; }
@@ -400,7 +409,7 @@ export const BuildWebsitePage = `
           <div class="eyebrow">A field study in three dimensions</div>
           <h1 class="hero-title" id="hero-title">Heaven <span class="slash">/</span><em>on Earth</em></h1>
         </div>
-        <p class="hero-deck">From the summit of Glastonbury Tor, the land stops being a landscape and becomes a living map.</p>
+        <p class="hero-deck">From the summit of Glastonbury Tor, the Milky Way spills into the water and the land becomes a living map.</p>
       </div>
       <div class="hero-footer"><span class="hero-coordinates">Glastonbury, Somerset / 2024—∞</span><span class="scroll-cue">Enter the view</span></div>
     </section>
@@ -408,7 +417,7 @@ export const BuildWebsitePage = `
     <section class="statement" id="view" aria-labelledby="statement-title">
       <div class="section-index">01 / The proposition</div>
       <div class="statement-copy">
-        <p id="statement-title">Look down from the Tor and the familiar world begins to <em>rearrange itself.</em> Water becomes sky. Boundaries become lines. The old fields hold a pattern that was there long before we named it.</p>
+        <p id="statement-title">Look down from the Tor and the familiar world begins to <em>rearrange itself.</em> The Milky Way trembles in every flooded field. Boundaries become lines. The old ground holds a pattern that was there long before we named it.</p>
         <div class="statement-rule"></div>
       </div>
     </section>
@@ -420,8 +429,8 @@ export const BuildWebsitePage = `
       </div>
       <div class="map-layout">
         <div class="map-copy">
-          <h3>Read the constellation below.</h3>
-          <p>The Tor is the fixed point. Around it, the flooded meadows and ancient trackways draw a geometry that feels less engineered than remembered. Follow the channels and the eye starts to find stars.</p>
+<h3>Read the zodiac below.</h3>
+           <p>The Tor is the fixed point. Around it, the flooded meadows and ancient trackways draw a geometry that feels less engineered than remembered. Follow the channels and the eye starts to find figures — shimmering creatures written into the ground.</p>
           <a class="text-link" href="#field-notes">Trace the lines</a>
         </div>
         <div class="map-card" aria-label="Abstract diagram of Glastonbury waterways and constellation lines">
@@ -444,13 +453,21 @@ export const BuildWebsitePage = `
           <div class="map-card-caption"><span>Field notation no. 01</span><span>Not to scale / not a coincidence</span></div>
         </div>
       </div>
+      <div class="zodiac-index" aria-label="Figures of the Avalon zodiac">
+        <article class="zodiac-item"><div class="zodiac-name">Aries</div><p>A hornless lamb in the fields of Street, head turned back toward the old roads.</p></article>
+        <article class="zodiac-item"><div class="zodiac-name">Taurus</div><p>The bull’s head and forefoot, with Collard Hill held close as its collar.</p></article>
+        <article class="zodiac-item"><div class="zodiac-name">Gemini</div><p>A great child or baby formed between Dundon Hill and Lollover Hill.</p></article>
+        <article class="zodiac-item"><div class="zodiac-name">Aquarius</div><p>A phoenix or eagle with wings spread: the Tor at its head, Chalice Well at its beak.</p></article>
+        <article class="zodiac-item"><div class="zodiac-name">Capricorn</div><p>A goat-unicorn whose horn points toward the earthwork at Ponter’s Ball.</p></article>
+        <article class="zodiac-item"><div class="zodiac-name">Leo</div><p>A huge lion, its underside drawn by the slow curve of the River Cary.</p></article>
+      </div>
     </section>
 
     <section class="full-bleed" aria-labelledby="water-title">
       <div class="full-bleed-content">
         <div class="full-bleed-top"><span>02 / The reflection</span><span>Above / below</span></div>
         <h2 id="water-title">The water<br><em>remembers.</em></h2>
-        <div class="full-bleed-bottom"><span class="number-stamp">Signal received / 22:14</span><p>In the flooded fields, the night sky returns to us — not as a reflection, but as a second country.</p></div>
+        <div class="full-bleed-bottom"><span class="number-stamp">Signal received / 22:14</span><p>In the flooded fields, the bright Milky Way returns to us — a river of stars doubled in the water, a second country beneath our feet.</p></div>
       </div>
     </section>
 
