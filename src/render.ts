@@ -151,13 +151,22 @@ button { font: inherit; }
   color: var(--paper-bright);
   background: var(--night);
 }
+@keyframes sky-pulse {
+  0%, 100% { filter: saturate(1) brightness(.96); transform: scale(1); }
+  50% { filter: saturate(1.12) brightness(1.06); transform: scale(1.015); }
+}
+@keyframes constellation-flicker {
+  0%, 100% { opacity: .56; }
+  50% { opacity: .92; }
+}
 .hero::before {
   position: absolute;
   z-index: -2;
-  inset: 0;
+  inset: -1.5%;
   background-image: linear-gradient(180deg, rgba(9,15,18,.48) 0%, rgba(11,18,19,.03) 35%, rgba(9,14,12,.62) 100%), url('${HERO_IMAGE}');
   background-position: center;
   background-size: cover;
+  animation: sky-pulse 14s ease-in-out infinite;
   content: '';
 }
 .hero::after {
@@ -264,6 +273,8 @@ button { font: inherit; }
 .map-card::before { position: absolute; inset: 0; background: radial-gradient(circle at 44% 45%, transparent 0 29%, rgba(115,131,107,.12) 29.2% 29.5%, transparent 29.8% 100%); content: ''; }
 .map-card svg { position: absolute; inset: 5% 4%; width: 92%; height: 90%; }
 .map-card path, .map-card circle { vector-effect: non-scaling-stroke; }
+.map-card circle { animation: constellation-flicker 4s ease-in-out infinite; }
+.map-card circle:nth-of-type(2n) { animation-delay: -1.6s; }
 .map-label { position: absolute; display: flex; align-items: center; gap: 7px; color: var(--moss-dark); font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
 .map-label::before { display: block; width: 5px; height: 5px; border: 1px solid var(--ochre); border-radius: 50%; content: ''; }
 .label-tor { top: 25%; left: 55%; }
@@ -330,6 +341,11 @@ button { font: inherit; }
 
 /* Hidden compatibility form: the template still exposes the original builder API without interrupting the editorial landing page. */
 .builder-compat { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero::before, .map-card circle { animation: none; }
+}
 
 @media (max-width: 760px) {
   .site-nav { padding: 20px 20px; }
@@ -444,7 +460,7 @@ export const BuildWebsitePage = `
             <path d="M174 378L298 240l93 142 99-84 151 45" stroke="#3f523f" stroke-width="1" opacity=".56"/>
             <circle cx="92" cy="93" r="4" fill="#bb9555"/><circle cx="210" cy="157" r="3" fill="#bb9555"/><circle cx="297" cy="99" r="4" fill="#bb9555"/><circle cx="413" cy="240" r="5" fill="#bb9555"/><circle cx="526" cy="198" r="3" fill="#bb9555"/><circle cx="610" cy="272" r="4" fill="#bb9555"/><circle cx="707" cy="215" r="3" fill="#bb9555"/>
             <circle cx="413" cy="240" r="25" stroke="#bb9555" stroke-width=".8" opacity=".6"/><circle cx="413" cy="240" r="44" stroke="#bb9555" stroke-width=".5" opacity=".32"/>
-            <path d="M387 251l26-68 28 68-28-15z" fill="#3f523f" opacity=".88"/><path d="M413 183v-35" stroke="#3f523f" stroke-width="2"/>
+            <path d="M382 252c8-31 20-55 31-72 16 22 27 45 33 72-22-8-43-8-64 0z" fill="#3f523f" opacity=".88"/>
             <g fill="#3f523f" opacity=".72"><circle cx="145" cy="295" r="2"/><circle cx="184" cy="279" r="1.5"/><circle cx="223" cy="318" r="2"/><circle cx="350" cy="390" r="1.5"/><circle cx="521" cy="369" r="2"/><circle cx="630" cy="425" r="1.5"/><circle cx="699" cy="353" r="2"/></g>
           </svg>
           <div class="map-label label-tor">The Tor / fixed point</div>
